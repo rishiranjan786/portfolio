@@ -1,95 +1,85 @@
-import Typewriter from "typewriter-effect";
-import GraphemeSplitter from "grapheme-splitter";
 import "../../App.css";
-import { NavLink } from "react-router-dom";
+import DownloadIcon from "@mui/icons-material/Download";
+import * as LottiePlayer from "@lottiefiles/lottie-player";
 
-export default function Home() {
-  const stringSplitter = (string) => {
-    const splitter = new GraphemeSplitter();
-    return splitter.splitGraphemes(string);
-  };
-
-  const scroll = (section) => {
-    if (section === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+export default function About() {
+  const getDate = () => {
+    var dob = new Date("04/01/1996");
+    var month_diff = Date.now() - dob.getTime();
+    var age_dt = new Date(month_diff);
+    var year = age_dt.getUTCFullYear();
+    var age = Math.abs(year - 1970);
+    return age;
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-1 gap-7 name content-center text-center">
-      <h1
-        className="head text-5xl font-semibold tracking-[3px] pb-2 "
-        data-aos="zoom-in-up"
-      >
-        Welcome
-      </h1>
+    <div
+      id="about"
+      className="min-h-screen bg-white flex flex-col text-center gap-5 text-black text-sm lg:text-lg  font-normal"
+    >
       <div
-        className="text-4xl text-yellow-500 pb-16"
-        data-aos-delay="700"
-        data-aos="zoom-in"
+        className="head text-3xl lg:text-5xl mt-12 font-bold"
+        data-aos={"slide-down"}
       >
-        {" "}
-        <Typewriter
-          options={{
-            strings: [
-              "✋I'm Rishi Ranjan",
-              "I'm an enthusiast Full-Stack 🌐developer",
-              "I'm a 2nd yr MCA 👨‍🎓 in NIET, Greater Noida",
-              "You can 📲 me or ✉️",
-            ],
-            delay: 150,
-            pauseFor: 1500,
-            autoStart: true,
-            loop: true,
-            stringSplitter: stringSplitter,
-          }}
-        />
+        About Me
       </div>
-      <button
-        className="py-2 mx-auto px-7 bg-transparent border-2 w-fit border-blue-500 rounded-sm  hover:-translate-y-1.5 duration-[350ms] hover:duration-[350ms] hover:bg-blue-800"
-        data-aos="zoom-out-up"
-        data-aos-delay="1400"
-      >
-        <NavLink
-          to="#contact"
-          onClick={() => {
-            scroll("contact");
-          }}
+      <div className="flex flex-row  gap-6 ml-8">
+        <div className="flex-col mt-14 flex flex-auto w-64 gap-6">
+          <h3
+            className="text-xl lg:text-3xl font-medium"
+            data-aos={"fade-left"}
+          >
+            I'm <span className="text-yellow-600">Rishi Ranjan,</span> a Web
+            Enthusiast
+          </h3>
+          <p
+            className="pt-5 leading-7 text-slate-900 text-justify"
+            data-aos={"fade-left"}
+          >
+            I love playing chess, reading comics and cooking food. 
+            I am currently pursuing MCA degree in NIET, Greater Noida. 
+            I am {getDate()}{" "} years old. I love exploring new technologies.
+          </p>
+          <p
+            className="text-justify leading-7 text-slate-900"
+            data-aos={"fade-right"}
+          >
+            I am currently looking for jobs. I am a MERN stack developer.
+            I worked on ReactJs, NodeJs, MongoDb, JavaScript, HTML, CSS. 
+            I am also looking to collaborate in open-source projects.
+          </p>
+        </div>
+
+        <div
+          class="relative flex-auto w-32   sm:rounded-lg  pl-4"
+          data-aos={"slide-left"}
         >
-          <p title="Contact"> Contact Me</p>
-        </NavLink>
-      </button>
-      <div
-        className=" cursor-pointer w-fit left-[48%] lg:left-[62%] absolute bottom-16"
-        data-aos="flip-up"
-        data-aos-offset="20"
-        data-aos-delay="2000"
-      >
-        <NavLink
-          to="#about"
-          onClick={() => {
-            scroll("about");
-          }}
-        >
-          <div className="text-slate-400">
-            <svg
-              width="24"
-              height="24"
-              xmlns="http://www.w3.org/2000/svg"
-              fillRule="evenodd"
-              clipRule="evenodd"
-              fill="currentColor"
-              className="motion-safe:animate-bounce"
-            >
-              <path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z" />
-            </svg>
+          {/* <img
+            src={LearningCode}
+            alt="Learning Code"
+            className="motion-safe:animate-zoomy"
+          /> */}
+          <div className="motion-safe:animate-zoomy">
+            <lottie-player
+              autoplay
+              loop
+              mode="bounce"
+              src="https://assets10.lottiefiles.com/packages/lf20_w98qte06.json"
+              style={{ width: "350px" }}
+            />
           </div>
-        </NavLink>
+
+          <a
+            href={require("../../assets/files/Rishi Resume.pdf")}
+            download={"Rishi's Resume"}
+            target="_blank"
+            rel="noreferrer"
+            className="py-1 md:py-2 lg:py-3 mt-3 lg:mt-5 text-white mx-auto px-4  lg:px-9 bg-blue-600 border-2 w-fit border-blue-500 rounded-3xl  hover:-translate-y-1.5 duration-[350ms] hover:duration-[350ms] hover:bg-blue-800 hover:scale-[1.023] focus:bg-blue-800 sm:text-xl  animate-zoomy"
+          >
+            Download CV
+            <DownloadIcon />
+          </a>
+        </div>
       </div>
     </div>
   );
