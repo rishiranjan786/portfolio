@@ -17,6 +17,7 @@ export default function About() {
       id="about"
       className="min-h-screen bg-white flex flex-col text-center gap-5 text-black text-sm lg:text-lg  font-normal"
     >
+      <h1>My name rishi ranjan</h1>
       <div
         className="head text-3xl lg:text-5xl mt-12 font-bold"
         data-aos={"slide-down"}
